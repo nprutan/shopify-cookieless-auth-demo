@@ -34,8 +34,6 @@ const shopifyGraphQLProxy = (proxyOptions) => {
     await proxy(shop, {
       https: true,
       parseReqBody: false,
-      // Setting request header here, not response. That's why we don't use ctx.set()
-      // proxy middleware will grab this request header
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Access-Token": accessToken,
@@ -51,12 +49,6 @@ const shopifyGraphQLProxy = (proxyOptions) => {
       },
     })(
       ctx,
-
-      /*
-        We want this middleware to terminate, not fall through to the next in the chain,
-        but sadly it doesn't support not passing a `next` function. To get around this we
-        just pass our own dummy `next` that resolves immediately.
-      */
       noop
     );
   };
