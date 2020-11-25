@@ -1,0 +1,79 @@
+{
+  "name": "shopify-app-node",
+  "version": "1.0.0",
+  "description": "Shopify's node app for CLI tool",
+  "scripts": {
+    "test": "jest",
+    "dev": "cross-env NODE_ENV=development nodemon ./server/index.js --watch ./server/index.js",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "start": "cross-env NODE_ENV=production node ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shopify/shopify-app-node.git"
+  },
+  "author": "Shopify Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shopify/shopify-app-node/issues"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
+    "@babel/core": "7.12.3",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
+    "@shopify/admin-graphql-api-utilities": "^0.1.1",
+    "@shopify/app-bridge": "^1.26.2",
+    "@shopify/app-bridge-utils": "1.26.2",
+    "@shopify/app-cli-node-generator-helper": "^1.2.1",
+    "@shopify/dates": "^0.4.1",
+    "@shopify/koa-shopify-webhooks": "^2.3.1",
+    "@shopify/polaris": "^5.10.1",
+    "@zeit/next-css": "^1.0.1",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.3.0",
+    "isomorphic-fetch": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-router": "^8.0.6",
+    "koa-session": "^6.1.0",
+    "koa-shopify-auth-cookieless": "^1.0.26",
+    "koa-shopify-graphql-proxy-cookieless": "^1.0.5",
+    "next": "^10.0.0",
+    "next-env": "^1.1.0",
+    "node-fetch": "^2.6.1",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "shopify-jwt-auth-verify": "^1.0.10"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-stage-3": "^7.0.0",
+    "babel-jest": "26.6.2",
+    "babel-register": "^6.26.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.5",
+    "husky": "^4.0.7",
+    "jest": "26.6.2",
+    "lint-staged": "^10.0.1",
+    "nodemon": "^2.0.0",
+    "prettier": "2.1.2",
+    "react-addons-test-utils": "15.6.2",
+    "react-test-renderer": "16.14.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
