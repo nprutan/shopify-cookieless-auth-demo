@@ -43,7 +43,7 @@
     "koa-router": "^8.0.6",
     "koa-session": "^6.1.0",
     "koa-shopify-auth-cookieless": "^1.0.26",
-    "koa-shopify-graphql-proxy-cookieless": "^1.0.5",
+    "koa-shopify-graphql-proxy-cookieless": "^1.0.6",
     "next": "^10.0.0",
     "next-env": "^1.1.0",
     "node-fetch": "^2.6.1",

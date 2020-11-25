@@ -9,6 +9,7 @@ const ApiVersion = {
   January20: "2020-01",
   April20: "2020-04",
   July20: "2020-07",
+  Octorber: "2020-10",
   Unstable: "unstable",
   Unversioned: "unversioned",
 };
@@ -38,6 +39,12 @@ const shopifyGraphQLProxy = (proxyOptions) => {
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Access-Token": accessToken,
+      },
+      proxyReqOptDecorator(proxyReqOpts) {
+        delete proxyReqOpts.headers.cookie;
+        delete proxyReqOpts.headers.Cookie;
+        delete proxyReqOpts.headers['x-requested-with'];
+        return proxyReqOpts;
       },
       proxyReqPathResolver() {
         return `https://${shop}/${GRAPHQL_PATH_PREFIX}/${version}/graphql.json`;
