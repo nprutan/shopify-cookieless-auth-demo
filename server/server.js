@@ -52,7 +52,7 @@ app.prepare().then(() => {
       const decoded = jwt.decode(token);
       const shop = new URL(decoded.dest).host;
       // Retrive token here
-      const accessToken = "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";
+      const accessToken = "persistedToken";
       const proxy = graphQLProxy({
         shop: shop,
         password: accessToken,
@@ -64,7 +64,7 @@ app.prepare().then(() => {
   router.get("/", async (ctx, next) => {
     const shop = getQueryKey(ctx, "shop");
     // Retrive token here
-    const token = "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";
+    const token = "persistedToken";
     // We are setting the state here explicity
     // for uniformity with ctx.state in createShopifyAuth
     // State with this shape is used in 
