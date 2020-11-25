@@ -1,0 +1,7 @@
+/// <reference types="react" />
+import type { ComplexAction } from '../../../../types';
+export interface MenuActionProps extends ComplexAction {
+    /** Whether or not the action discloses a menu group */
+    disclosure?: boolean;
+}
+export declare function MenuAction({ content, accessibilityLabel, url, external, icon, disclosure, disabled, onAction, }: MenuActionProps): JSX.Element;

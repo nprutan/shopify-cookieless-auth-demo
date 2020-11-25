@@ -1,0 +1,28 @@
+{
+  "name": "nonce",
+  "description": "returns unique and ever increasing timestamps",
+  "version": "1.0.4",
+  "keywords": [
+    "nonce",
+    "timestamp",
+    "rest"
+  ],
+  "author": "Andreas Brekken <a@abrkn.com>",
+  "license": "Free as in Hugs",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "2.5.3",
+    "expect.js": "0.3.1"
+  },
+  "main": "./index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abrkn/nonce.git"
+  },
+  "engines": {
+    "node": ">=0.6"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}

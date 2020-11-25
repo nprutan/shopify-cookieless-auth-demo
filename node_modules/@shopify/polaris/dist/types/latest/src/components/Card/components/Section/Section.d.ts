@@ -1,0 +1,10 @@
+import React from 'react';
+import type { ComplexAction } from '../../../../types';
+export interface SectionProps {
+    title?: React.ReactNode;
+    children?: React.ReactNode;
+    subdued?: boolean;
+    fullWidth?: boolean;
+    actions?: ComplexAction[];
+}
+export declare function Section({ children, title, subdued, fullWidth, actions, }: SectionProps): JSX.Element;
