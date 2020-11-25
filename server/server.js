@@ -51,7 +51,7 @@ app.prepare().then(() => {
       const token = bearer.split(" ")[1];
       const decoded = jwt.decode(token);
       const shop = new URL(decoded.dest).host;
-      // Retrive token here
+      // Retrieve token here
       const accessToken = "persistedToken";
       const proxy = graphQLProxy({
         shop: shop,
@@ -63,10 +63,10 @@ app.prepare().then(() => {
   });
   router.get("/", async (ctx, next) => {
     const shop = getQueryKey(ctx, "shop");
-    // Retrive token here
+    // Retrieve token here
     const token = "persistedToken";
     // We are setting the state here explicity
-    // for uniformity with ctx.state in createShopifyAuth
+    // for uniformity with ctx.state in createShopifyAuth method
     // State with this shape is used in 
     // koa-shopify-auth-cookieless/utilites/getShopCredentials
     ctx.state = { shopify: { shop: shop, accessToken: token } };
