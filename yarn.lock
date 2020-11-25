@@ -6227,10 +6227,10 @@ koa-shopify-auth-cookieless@^1.0.26:
     nonce "^1.0.4"
     safe-compare "^1.1.2"
 
-koa-shopify-graphql-proxy-cookieless@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/koa-shopify-graphql-proxy-cookieless/-/koa-shopify-graphql-proxy-cookieless-1.0.6.tgz#5d648b40c3a99dbb67d1ecc61b991a8a3f2888a7"
-  integrity sha512-YG0HoIXoFfhSVuwPG5bHWUT1Q3baFkKBlWS85PKJ+TvwmZmgo6eVCegyi/zYlxpiH3cvHKeuh2KrVO4lhAoyMg==
+koa-shopify-graphql-proxy-cookieless@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/koa-shopify-graphql-proxy-cookieless/-/koa-shopify-graphql-proxy-cookieless-1.0.8.tgz#de5dda1b6d9e3bed29a3c295003ae8b964658420"
+  integrity sha512-5LTwZTYd/i8kQdheA+32hxoRINiJkOkGiQ/L2xG0Xp1KLOXUMFLQopSw2F9LiyuHwymFbNSLz9Xh1VzdIXW00Q==
   dependencies:
     "@shopify/network" "^1.5.0"
     koa-better-http-proxy "^0.2.4"
