@@ -1,3 +1,19 @@
+# Shopify Cookieless Auth Demo
+This is not sponsored or endorsed by Shopify, or connected with Shopify in any way.
+
+I'm providing this package as a reference for using with Shopify's Next Gen JWT-based Cookieless Auth.
+
+# Instructions
+If you'd like to see this in action, it's important to create a new Shopif-CLI project.  
+
+```sh
+~/ $ shopify create project APP_NAME
+```  
+Choose Node.js App  
+Then, clone this repo. Once you've cloned the demo, you can connect your newly created existing Shopify project to the demo. Open a terminal in the demo directory and use the command:
+```shopify connect```
+This will allow you to associate API keys and secrets, plus your ngrok tunnel with the project. Otherwise, you'll be missing the .env and .shopify-cli.yml files.
+
 # Shopify App Node
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
