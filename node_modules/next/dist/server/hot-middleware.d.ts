@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import type webpack from 'webpack';
-import type http from 'http';
+import webpack from 'webpack';
+import http from 'http';
 export declare class WebpackHotMiddleware {
     eventStream: EventStream;
     latestStats: webpack.Stats | null;

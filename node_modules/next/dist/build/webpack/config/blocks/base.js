@@ -9,6 +9,6 @@ config.devtool='inline-source-map';}else{// `eval-source-map` provides full-fide
 // original source, including columns and original variable names.
 // This is desirable so the in-browser debugger can correctly pause
 // and show scoped variables with their original names.
-config.devtool='eval-source-map';}}else{// Enable browser sourcemaps
-if(ctx.productionBrowserSourceMaps){config.devtool='source-map';}else{config.devtool=false;}}if(!config.module){config.module={rules:[]};}config.module.strictExportPresence=true;return config;});exports.base=base;
+config.devtool='eval-source-map';}}else{// Enable browser sourcemaps:
+if(ctx.productionBrowserSourceMaps&&ctx.isClient){config.devtool='source-map';}else{config.devtool=false;}}if(!config.module){config.module={rules:[]};}config.module.strictExportPresence=true;return config;});exports.base=base;
 //# sourceMappingURL=base.js.map

@@ -9,6 +9,7 @@ export declare const EXPORT_DETAIL = "export-detail.json";
 export declare const PRERENDER_MANIFEST = "prerender-manifest.json";
 export declare const ROUTES_MANIFEST = "routes-manifest.json";
 export declare const IMAGES_MANIFEST = "images-manifest.json";
+export declare const SERVER_FILES_MANIFEST = "required-server-files.json";
 export declare const DEV_CLIENT_PAGES_MANIFEST = "_devPagesManifest.json";
 export declare const REACT_LOADABLE_MANIFEST = "react-loadable-manifest.json";
 export declare const FONT_MANIFEST = "font-manifest.json";

@@ -6,11 +6,11 @@ import { PrerenderManifest } from '../../build';
 import { CustomRoutes } from '../../lib/load-custom-routes';
 import { getRouteMatcher } from '../lib/router/utils';
 import { __ApiPreviewProps } from './api-utils';
+import { DomainLocales, NextConfig } from './config';
 import Router, { DynamicRoutes, PageChecker, Params, Route } from './router';
 import './node-polyfill-fetch';
 import { PagesManifest } from '../../build/webpack/plugins/pages-manifest-plugin';
 import { FontManifest } from './font-utils';
-declare type NextConfig = any;
 declare type DynamicRouteItem = {
     page: string;
     match: ReturnType<typeof getRouteMatcher>;
@@ -27,7 +27,7 @@ export declare type ServerConstructor = {
     /**
      * Object what you would use in next.config.js - @default {}
      */
-    conf?: NextConfig;
+    conf?: NextConfig | null;
     dev?: boolean;
     customServer?: boolean;
 };
@@ -42,6 +42,7 @@ export default class Server {
     serverBuildDir: string;
     pagesManifest?: PagesManifest;
     buildId: string;
+    minimalMode: boolean;
     renderOpts: {
         poweredByHeader: boolean;
         buildId: string;
@@ -62,9 +63,11 @@ export default class Server {
         images: string;
         fontManifest: FontManifest;
         optimizeImages: boolean;
+        optimizeCss: any;
         locale?: string;
         locales?: string[];
         defaultLocale?: string;
+        domainLocales?: DomainLocales;
     };
     private compression?;
     private onErrorMiddleware?;
@@ -72,7 +75,9 @@ export default class Server {
     router: Router;
     protected dynamicRoutes?: DynamicRoutes;
     protected customRoutes: CustomRoutes;
-    constructor({ dir, quiet, conf, dev, customServer, }?: ServerConstructor);
+    constructor({ dir, quiet, conf, dev, minimalMode, customServer, }?: ServerConstructor & {
+        minimalMode?: boolean;
+    });
     protected currentPhase(): string;
     logError(err: Error): void;
     private handleRequest;

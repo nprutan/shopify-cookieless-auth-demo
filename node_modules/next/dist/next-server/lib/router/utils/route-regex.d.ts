@@ -1,4 +1,4 @@
-interface Group {
+export interface Group {
     pos: number;
     repeat: boolean;
     optional: boolean;
@@ -13,4 +13,3 @@ export declare function getRouteRegex(normalizedRoute: string): {
         [groupName: string]: Group;
     };
 };
-export {};

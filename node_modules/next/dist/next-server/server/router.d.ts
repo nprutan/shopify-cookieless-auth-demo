@@ -20,6 +20,7 @@ export declare type Route = {
     statusCode?: number;
     name: string;
     requireBasePath?: false;
+    internal?: true;
     fn: (req: IncomingMessage, res: ServerResponse, params: Params, parsedUrl: UrlWithParsedQuery) => Promise<RouteResult> | RouteResult;
 };
 export declare type DynamicRoutes = Array<{

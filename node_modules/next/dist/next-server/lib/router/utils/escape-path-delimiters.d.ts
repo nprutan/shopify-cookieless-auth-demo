@@ -1,1 +1,1 @@
-export default function escapePathDelimiters(segment: string): string;
+export default function escapePathDelimiters(segment: string, escapeEncoded?: boolean): string;

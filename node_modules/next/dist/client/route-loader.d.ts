@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import type { ClientBuildManifest } from '../build/webpack/plugins/build-manifest-plugin';
+import { ClientBuildManifest } from '../build/webpack/plugins/build-manifest-plugin';
 declare global {
     interface Window {
         __BUILD_MANIFEST?: ClientBuildManifest;

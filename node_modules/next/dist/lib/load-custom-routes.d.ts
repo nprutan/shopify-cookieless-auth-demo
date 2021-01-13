@@ -1,3 +1,4 @@
+import { NextConfig } from '../next-server/server/config';
 export declare type Rewrite = {
     source: string;
     destination: string;
@@ -29,4 +30,4 @@ export interface CustomRoutes {
     rewrites: Rewrite[];
     redirects: Redirect[];
 }
-export default function loadCustomRoutes(config: any): Promise<CustomRoutes>;
+export default function loadCustomRoutes(config: NextConfig): Promise<CustomRoutes>;

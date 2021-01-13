@@ -20,6 +20,7 @@ export default class PageLoader {
     /**
      * @param {string} href the route href (file-system path)
      * @param {string} asPath the URL as shown in browser (virtual path); used for dynamic routes
+     * @returns {string}
      */
     getDataHref(href: string, asPath: string, ssg: boolean, locale?: string | false): string;
     /**

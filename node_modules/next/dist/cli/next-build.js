@@ -14,5 +14,5 @@
       Options
       --profile     Can be used to enable React Production Profiling
     `,0);}if(args['--profile']){Log.warn('Profiling is enabled. Note: This may affect performance');}const dir=(0,_path.resolve)(args._[0]||'.');// Check if the provided directory exists
-if(!(0,_fs.existsSync)(dir)){(0,_utils.printAndExit)(`> No such directory exists as the project root: ${dir}`);}(0,_build.default)(dir,null,args['--profile'],args['--debug']).then(()=>process.exit(0)).catch(err=>{console.error('');console.error('> Build error occurred');(0,_utils.printAndExit)(err);});};exports.nextBuild=nextBuild;
+if(!(0,_fs.existsSync)(dir)){(0,_utils.printAndExit)(`> No such directory exists as the project root: ${dir}`);}return(0,_build.default)(dir,null,args['--profile'],args['--debug']).catch(err=>{console.error('');console.error('> Build error occurred');(0,_utils.printAndExit)(err);});};exports.nextBuild=nextBuild;
 //# sourceMappingURL=next-build.js.map

@@ -3,17 +3,28 @@ import { ParsedUrlQuery } from 'querystring';
 import { ComponentType } from 'react';
 import { UrlObject } from 'url';
 import { GoodPageCache, StyleSheetTuple } from '../../../client/page-loader';
+import { DomainLocales } from '../../server/config';
 import { MittEmitter } from '../mitt';
-import { NextPageContext } from '../utils';
+import { NextPageContext, NEXT_DATA } from '../utils';
+declare global {
+    interface Window {
+        __NEXT_DATA__: NEXT_DATA;
+    }
+}
+interface RouteProperties {
+    shallow: boolean;
+}
 interface TransitionOptions {
     shallow?: boolean;
     locale?: string | false;
+    scroll?: boolean;
 }
 interface NextHistoryState {
     url: string;
     as: string;
     options: TransitionOptions;
 }
+export declare function getDomainLocale(path: string, locale?: string | false, locales?: string[], domainLocales?: DomainLocales): string | false;
 export declare function addLocale(path: string, locale?: string | false, defaultLocale?: string): string;
 export declare function delLocale(path: string, locale?: string): string;
 export declare function hasBasePath(path: string): boolean;
@@ -42,8 +53,9 @@ export declare type BaseRouter = {
     locale?: string;
     locales?: string[];
     defaultLocale?: string;
+    domainLocales?: DomainLocales;
 };
-export declare type NextRouter = BaseRouter & Pick<Router, 'push' | 'replace' | 'reload' | 'back' | 'prefetch' | 'beforePopState' | 'events' | 'isFallback'>;
+export declare type NextRouter = BaseRouter & Pick<Router, 'push' | 'replace' | 'reload' | 'back' | 'prefetch' | 'beforePopState' | 'events' | 'isFallback' | 'isReady'>;
 export declare type PrefetchOptions = {
     priority?: boolean;
     locale?: string | false;
@@ -64,7 +76,10 @@ export declare type AppProps = Pick<CompletePrivateRouteInfo, 'Component' | 'err
     router: Router;
 } & Record<string, any>;
 export declare type AppComponent = ComponentType<AppProps>;
-declare type Subscription = (data: PrivateRouteInfo, App: AppComponent) => Promise<void>;
+declare type Subscription = (data: PrivateRouteInfo, App: AppComponent, resetScroll: {
+    x: number;
+    y: number;
+} | null) => Promise<void>;
 declare type BeforePopStateCallback = (state: NextHistoryState) => boolean;
 declare type ComponentLoadCancel = (() => void) | null;
 declare type HistoryMethod = 'replaceState' | 'pushState';
@@ -96,8 +111,11 @@ export default class Router implements BaseRouter {
     locale?: string;
     locales?: string[];
     defaultLocale?: string;
+    domainLocales?: DomainLocales;
+    isReady: boolean;
+    private _idx;
     static events: MittEmitter;
-    constructor(pathname: string, query: ParsedUrlQuery, as: string, { initialProps, pageLoader, App, wrapApp, Component, err, subscription, isFallback, locale, locales, defaultLocale, }: {
+    constructor(pathname: string, query: ParsedUrlQuery, as: string, { initialProps, pageLoader, App, wrapApp, Component, err, subscription, isFallback, locale, locales, defaultLocale, domainLocales, }: {
         subscription: Subscription;
         initialProps: any;
         pageLoader: any;
@@ -109,6 +127,7 @@ export default class Router implements BaseRouter {
         locale?: string;
         locales?: string[];
         defaultLocale?: string;
+        domainLocales?: DomainLocales;
     });
     onPopState: (e: PopStateEvent) => void;
     reload(): void;
@@ -130,14 +149,17 @@ export default class Router implements BaseRouter {
      * @param options object you can define `shallow` and other options
      */
     replace(url: Url, as?: Url, options?: TransitionOptions): Promise<boolean>;
-    change(method: HistoryMethod, url: string, as: string, options: TransitionOptions): Promise<boolean>;
+    private change;
     changeState(method: HistoryMethod, url: string, as: string, options?: TransitionOptions): void;
     handleRouteInfoError(err: Error & {
         code: any;
         cancelled: boolean;
-    }, pathname: string, query: ParsedUrlQuery, as: string, loadErrorFail?: boolean): Promise<CompletePrivateRouteInfo>;
-    getRouteInfo(route: string, pathname: string, query: any, as: string, shallow?: boolean): Promise<PrivateRouteInfo>;
-    set(route: string, pathname: string, query: ParsedUrlQuery, as: string, data: PrivateRouteInfo): Promise<void>;
+    }, pathname: string, query: ParsedUrlQuery, as: string, routeProps: RouteProperties, loadErrorFail?: boolean): Promise<CompletePrivateRouteInfo>;
+    getRouteInfo(route: string, pathname: string, query: any, as: string, routeProps: RouteProperties): Promise<PrivateRouteInfo>;
+    set(route: string, pathname: string, query: ParsedUrlQuery, as: string, data: PrivateRouteInfo, resetScroll: {
+        x: number;
+        y: number;
+    } | null): Promise<void>;
     /**
      * Callback to execute before replacing router state
      * @param cb callback to be executed
@@ -159,7 +181,10 @@ export default class Router implements BaseRouter {
     _getStaticData(dataHref: string): Promise<object>;
     _getServerData(dataHref: string): Promise<object>;
     getInitialProps(Component: ComponentType, ctx: NextPageContext): Promise<any>;
-    abortComponentLoad(as: string): void;
-    notify(data: PrivateRouteInfo): Promise<void>;
+    abortComponentLoad(as: string, routeProps: RouteProperties): void;
+    notify(data: PrivateRouteInfo, resetScroll: {
+        x: number;
+        y: number;
+    } | null): Promise<void>;
 }
 export {};

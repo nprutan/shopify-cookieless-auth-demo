@@ -37,7 +37,7 @@ export declare class Head extends Component<OriginProps & React.DetailedHTMLProp
     getCssLinks(files: DocumentFiles): JSX.Element[] | null;
     getPreloadDynamicChunks(): (JSX.Element | null)[];
     getPreloadMainLinks(files: DocumentFiles): JSX.Element[] | null;
-    makeStylesheetInert(node: ReactNode): ReactNode;
+    makeStylesheetInert(node: ReactNode): ReactNode[];
     render(): JSX.Element;
 }
 export declare function Main(): JSX.Element;
@@ -50,6 +50,7 @@ export declare class NextScript extends Component<OriginProps> {
     context: React.ContextType<typeof DocumentComponentContext>;
     static safariNomoduleFix: string;
     getDynamicChunks(files: DocumentFiles): (JSX.Element | null)[];
+    getPreNextScripts(): JSX.Element[];
     getScripts(files: DocumentFiles): JSX.Element[];
     getPolyfillScripts(): JSX.Element[];
     static getInlineScriptSource(documentProps: Readonly<DocumentProps>): string;

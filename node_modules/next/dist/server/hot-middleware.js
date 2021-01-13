@@ -18,7 +18,7 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class WebpackHotMiddleware{constructor(compiler){this.eventStream=void 0;this.latestStats=void 0;this.closed=void 0;this.onInvalid=()=>{if(this.closed)return;this.latestStats=null;this.eventStream.publish({action:'building'});};this.onDone=statsResult=>{if(this.closed)return;// Keep hold of latest stats so they can be propagated to new clients
-this.latestStats=statsResult;this.publishStats('built',this.latestStats);};this.middleware=(req,res,next)=>{var _req$url;if(this.closed)return next();if(!((_req$url=req.url)==null?void 0:_req$url.startsWith('/_next/webpack-hmr')))return next();this.eventStream.handler(req,res);if(this.latestStats){// Explicitly not passing in `log` fn as we don't want to log again on
+this.latestStats=statsResult;this.publishStats('built',this.latestStats);};this.middleware=(req,res,next)=>{var _req$url;if(this.closed)return next();if(!((_req$url=req.url)!=null&&_req$url.startsWith('/_next/webpack-hmr')))return next();this.eventStream.handler(req,res);if(this.latestStats){// Explicitly not passing in `log` fn as we don't want to log again on
 // the server
 this.publishStats('sync',this.latestStats);}};this.publishStats=(action,statsResult)=>{const stats=statsResult.toJson({all:false,hash:true,warnings:true,errors:true});this.eventStream.publish({action:action,hash:stats.hash,warnings:stats.warnings||[],errors:stats.errors||[]});};this.publish=payload=>{if(this.closed)return;this.eventStream.publish(payload);};this.close=()=>{if(this.closed)return;// Can't remove compiler plugins, so we just set a flag and noop if closed
 // https://github.com/webpack/tapable/issues/32#issuecomment-350644466

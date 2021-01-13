@@ -1,3 +1,4 @@
+import { NextConfig } from '../next-server/server/config';
 interface ExportOptions {
     outdir: string;
     silent?: boolean;
@@ -6,5 +7,5 @@ interface ExportOptions {
     buildExport?: boolean;
     statusMessage?: string;
 }
-export default function exportApp(dir: string, options: ExportOptions, configuration?: any): Promise<void>;
+export default function exportApp(dir: string, options: ExportOptions, configuration?: NextConfig): Promise<void>;
 export {};
