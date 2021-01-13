@@ -2,7 +2,7 @@ import ApolloClient from "apollo-client";
 
 export const createClient = (shop, accessToken) => {
   return new ApolloClient({
-    uri: `https://${shop}/admin/api/2020-07/graphql.json`,
+    uri: `https://${shop}/admin/api/2021-01/graphql.json`,
     request: (operation) => {
       operation.setContext({
         headers: {
